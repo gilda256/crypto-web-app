@@ -1,31 +1,61 @@
-
+// ===== انتخاب المنت‌های صفحه =====
 const coinListDiv = document.getElementById('coinList');
 const loadingDiv = document.getElementById('loading');
+const adviceDiv = document.getElementById('random-advice');
 
-// CoinGecko API
-fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usdt&include_24hr_change=true&include_24hr_high=true&include_24hr_low=true')
-  .then(response => response.json())
+if (coinListDiv && loadingDiv) {
+  coinListDiv.style.display = 'none';
+  loadingDiv.style.display = 'block';
+}
+
+fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('HTTP error! status: ' + response.status);
+    }
+    return response.json();
+  })
   .then(data => {
-    
-    document.getElementById('bitcoin-price').innerText = `Price: $${data.bitcoin.usdt}`;
-    document.getElementById('bitcoin-24h').innerText = `24h Change: ${data.bitcoin.usdt_24h_change.toFixed(2)}%`;
-    document.getElementById('bitcoin-highlow').innerText = `High: $${data.bitcoin.usdt_24h_high}, Low: $${data.bitcoin.usdt_24h_low}`;
+    console.log('CoinGecko data:', data);
 
-    document.getElementById('ethereum-price').innerText = `Price: $${data.ethereum.usdt}`;
-    document.getElementById('ethereum-24h').innerText = `24h Change: ${data.ethereum.usdt_24h_change.toFixed(2)}%`;
-    document.getElementById('ethereum-highlow').innerText = `High: $${data.ethereum.usdt_24h_high}, Low: $${data.ethereum.usdt_24h_low}`;
+    document.getElementById('bitcoin-price').innerText =
+      `Price: $${data.bitcoin.usd}`;
+    document.getElementById('bitcoin-24h').innerText =
+      `24h Change: ${data.bitcoin.usd_24h_change.toFixed(2)}%`;
 
-    loadingDiv.style.display = 'none';
-    coinListDiv.style.display = 'flex';
+    document.getElementById('ethereum-price').innerText =
+      `Price: $${data.ethereum.usd}`;
+    document.getElementById('ethereum-24h').innerText =
+      `24h Change: ${data.ethereum.usd_24h_change.toFixed(2)}%`;
+
+
+    if (loadingDiv && coinListDiv) {
+      loadingDiv.style.display = 'none';
+      coinListDiv.style.display = 'flex';
+    }
   })
-  .catch(error => console.error("CoinGecko API Error:", error));
+  .catch(error => {
+    console.error('CoinGecko API Error:', error);
+    if (loadingDiv) {
+      loadingDiv.innerText = 'Failed to load crypto data.';
+    }
+  });
 
-// Numbers API
-const randomNumber = Math.floor(Math.random() * 100) + 1;
-
-fetch(`https://numbersapi.com/${randomNumber}`)
-  .then(response => response.text())
-  .then(fact => {
-    document.getElementById('number-fact').innerText = fact;
+fetch('https://api.adviceslip.com/advice')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('HTTP error! status: ' + response.status);
+    }
+    return response.json();
   })
-  .catch(error => console.error("Numbers API Error:", error));
+  .then(data => {
+    if (data.slip && adviceDiv) {
+      adviceDiv.innerText = data.slip.advice;
+    }
+  })
+  .catch(error => {
+    console.error('Advice API Error:', error);
+    if (adviceDiv) {
+      adviceDiv.innerText = 'Could not load advice.';
+    }
+  });
