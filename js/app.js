@@ -23,7 +23,7 @@ fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_cur
 // Numbers API
 const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-fetch(`http://numbersapi.com/${randomNumber}`)
+fetch(`https://numbersapi.com/${randomNumber}`)
   .then(response => response.text())
   .then(fact => {
     document.getElementById('number-fact').innerText = fact;
