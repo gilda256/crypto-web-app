@@ -1,0 +1,94 @@
+/* Font */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFFFFF; /* Background */
+  color: #212121; /* Text Color */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* Header */
+header {
+  background-color: #263238; /* Secondary Color */
+  color: #FFC107; /* Primary Color */
+  padding: 1rem 0;
+}
+
+h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 28px; /* مثال بین 18–36px */
+}
+
+/* Main Section */
+main {
+  padding: 2rem;
+}
+
+/* Loading / Skeleton */
+.loading {
+  font-size: 16px;
+  color: #757575; /* Muted Text */
+  margin: 2rem 0;
+}
+
+/* Cryptocurrency Cards Container */
+.coin-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Coin Cards */
+.coin-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 220px;
+  border-top: 4px solid #FFC107; /* Primary Color accent */
+  text-align: left;
+}
+
+.coin-card h2 {
+  font-weight: bold;
+  font-size: 20px; /* Header size */
+  margin-top: 0;
+  color: #263238; /* Secondary Color */
+}
+
+.coin-card p {
+  font-weight: 400; /* Regular */
+  font-size: 14px; /* Body text size */
+  margin: 0.5rem 0;
+  color: #212121; /* Text Color */
+}
+
+/* Number Fact */
+.number-fact {
+  margin-top: 2rem;
+  font-style: italic;
+  font-size: 16px;
+  color: #1E88E5; /* Accent Color */
+}
+
+/* Footer */
+footer {
+  background-color: #263238; /* Secondary Color */
+  color: #FFC107; /* Primary Color */
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+/* Buttons / Inputs */
+#searchInput {
+  padding: 0.5rem 1rem;
+  font-size: 14px; /* Buttons & Labels size */
+  font-weight: 500; /* Medium */
+  border: 1px solid #757575; /* Muted Text */
+  border-radius: 6px;
+  width: 200px;
+  margin-bottom: 2rem;
+}

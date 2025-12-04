@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Crypto Dashboard</h1>
+  </header>
+
+  <main>
+    <!-- Skeleton / Loading -->
+    <div id="loading" class="loading">
+      <p>Loading data…</p>
+    </div>
+
+    <!-- Cryptocurrency Cards -->
+    <div id="coinList" class="coin-container" style="display:none;">
+      <div class="coin-card" id="bitcoin">
+        <h2>Bitcoin</h2>
+        <p id="bitcoin-price">Loading...</p>
+        <p id="bitcoin-24h">Loading...</p>
+        <p id="bitcoin-highlow">Loading...</p>
+      </div>
+      <div class="coin-card" id="ethereum">
+        <h2>Ethereum</h2>
+        <p id="ethereum-price">Loading...</p>
+        <p id="ethereum-24h">Loading...</p>
+        <p id="ethereum-highlow">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Random Number Fact -->
+    <div class="number-fact">
+      <h3>Random Number Fact</h3>
+      <p id="number-fact">Loading fact…</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crypto Web App</p>
+  </footer>
+</body>
+</html>
