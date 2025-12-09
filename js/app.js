@@ -1,11 +1,10 @@
-// ===== انتخاب المنت‌های صفحه =====
+
 const coinListDiv = document.getElementById('coinList');
 const loadingDiv = document.getElementById('loading');
 const loadingText = document.getElementById('loading-text');
 const adviceDiv = document.getElementById('random-advice');
 const searchInput = document.getElementById('searchInput');
 
-// ===== تنظیم لیست کوین‌ها =====
 const COIN_IDS = [
   'bitcoin',
   'ethereum',
@@ -14,7 +13,6 @@ const COIN_IDS = [
   'ripple',
   'cardano',
   'dogecoin',
-  'toncoin',
   'litecoin',
   'shiba-inu'
 ];
@@ -27,14 +25,12 @@ const COIN_DISPLAY_NAMES = {
   ripple: 'XRP (XRP)',
   cardano: 'Cardano (ADA)',
   dogecoin: 'Dogecoin (DOGE)',
-  toncoin: 'Toncoin (TON)',
   litecoin: 'Litecoin (LTC)',
   'shiba-inu': 'Shiba Inu (SHIB)'
 };
 
-// ===== API MODULE =====
 const API = {
-  // داده‌های مارکت: قیمت، high/low، حجم، مارکت‌کپ، عرضه‌ها، تغییر ۲۴ساعته
+
   fetchCoinsMarket(coinIds, vsCurrency = 'usd') {
     const ids = coinIds.join(',');
     const url =
@@ -47,7 +43,6 @@ const API = {
     });
   },
 
-  // داده‌های تاریخی برای نمودار و لیست روزهای گذشته
   fetchCoinHistory(coinId, vsCurrency = 'usd', days = 7) {
     const url =
       `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vsCurrency}&days=${days}&interval=daily`;
@@ -59,7 +54,6 @@ const API = {
     });
   },
 
-  // جمله تصادفی برای لودینگ و بخش Random Advice
   fetchRandomAdvice() {
     return fetch('https://api.adviceslip.com/advice').then(response => {
       if (!response.ok) {
@@ -70,7 +64,6 @@ const API = {
   }
 };
 
-// ===== FAVORITES MODULE =====
 const Favorites = {
   KEY: 'favoriteCoins',
 
@@ -100,7 +93,6 @@ const Favorites = {
   }
 };
 
-// ===== CHART MODULE (ساده) =====
 const ChartModule = {
   drawSimpleLine(canvasId, points) {
     const canvas = document.getElementById(canvasId);
@@ -133,7 +125,6 @@ const ChartModule = {
   }
 };
 
-// ===== ساخت داینامیک کارت‌ها =====
 function renderCoinCards(coins) {
   if (!coinListDiv) return;
   coinListDiv.innerHTML = '';
@@ -159,7 +150,6 @@ function renderCoinCards(coins) {
   });
 }
 
-// ===== Favorites UI Binding =====
 function setupFavoriteButtons() {
   const favButtons = document.querySelectorAll('.fav-btn');
   favButtons.forEach(btn => {
@@ -180,7 +170,6 @@ function setupFavoriteButtons() {
   });
 }
 
-// ===== Chart buttons (View Chart) =====
 function setupChartButtons() {
   const chartButtons = document.querySelectorAll('.chart-btn');
   chartButtons.forEach(btn => {
@@ -191,7 +180,6 @@ function setupChartButtons() {
   });
 }
 
-// ===== Search / Filter =====
 function setupSearch() {
   if (!searchInput) return;
   searchInput.addEventListener('input', () => {
@@ -204,7 +192,6 @@ function setupSearch() {
   });
 }
 
-// ===== History Loader (نمودار مشترک) =====
 function loadHistoryForCoin(coinId) {
   API.fetchCoinHistory(coinId, 'usd', 7)
     .then(history => {
@@ -234,14 +221,12 @@ function loadHistoryForCoin(coinId) {
     });
 }
 
-// ===== SKELETON / UI INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
   if (coinListDiv && loadingDiv) {
     coinListDiv.style.display = 'none';
     loadingDiv.style.display = 'block';
   }
 
-  // 1) Advice برای لودینگ و بخش Random Advice
   API.fetchRandomAdvice()
     .then(data => {
       if (data.slip && loadingText) {
@@ -260,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-  // 2) داده‌های مارکت 10 کوین
   API.fetchCoinsMarket(COIN_IDS, 'usd')
     .then(list => {
       renderCoinCards(list);
@@ -281,6 +265,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-  // 3) تاریخچه اولیه (بیت‌کوین) برای نمودار مشترک
   loadHistoryForCoin('bitcoin');
 });

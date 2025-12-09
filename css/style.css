@@ -9,7 +9,6 @@
   --primary: #1e88e5;
 }
 
-/* Global reset-ish */
 * {
   box-sizing: border-box;
 }
@@ -22,7 +21,6 @@ body {
   padding: 0;
 }
 
-/* Header */
 header {
   background-color: var(--bg-header);
   color: var(--accent);
@@ -37,7 +35,6 @@ h1 {
   text-align: center;
 }
 
-/* Main layout */
 main {
   padding: 2rem 1.5rem 3rem;
   max-width: 1100px;
@@ -45,14 +42,12 @@ main {
   text-align: center;
 }
 
-/* Loading / Skeleton */
 .loading {
   font-size: 16px;
   color: var(--text-muted);
   margin: 2rem 0;
 }
 
-/* Simple loading animation (advanced CSS) */
 @keyframes pulse {
   0% { opacity: 0.5; }
   50% { opacity: 1; }
@@ -63,7 +58,6 @@ main {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Search input */
 #searchInput {
   padding: 0.6rem 1rem;
   font-size: 14px;
@@ -84,7 +78,6 @@ main {
   transform: translateY(-1px);
 }
 
-/* Coin cards container */
 .coin-container {
   display: flex;
   justify-content: center;
@@ -92,7 +85,6 @@ main {
   flex-wrap: wrap;
 }
 
-/* Coin card */
 .coin-card {
   background-color: var(--bg-card);
   border-radius: 14px;
@@ -110,7 +102,6 @@ main {
     background-color 0.2s ease;
 }
 
-/* Hover effect (card) */
 .coin-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 18px rgba(0,0,0,0.16);
@@ -133,13 +124,11 @@ main {
   color: var(--text-main);
 }
 
-/* small label style for numbers */
 .coin-card p span.label {
   color: var(--text-muted);
   font-size: 12px;
 }
 
-/* Buttons common */
 .fav-btn,
 .chart-btn {
   margin-top: 0.5rem;
@@ -175,7 +164,6 @@ main {
   font-weight: 600;
 }
 
-/* Chart button */
 .chart-btn {
   border-color: var(--primary);
   background-color: #e3f2fd;
@@ -189,7 +177,6 @@ main {
   box-shadow: 0 4px 8px rgba(13,71,161,0.3);
 }
 
-/* Random advice */
 .random-advice {
   margin-top: 2.5rem;
   font-style: italic;
@@ -197,7 +184,6 @@ main {
   color: var(--primary);
 }
 
-/* Footer */
 footer {
   background-color: var(--bg-header);
   color: var(--accent);
@@ -205,7 +191,6 @@ footer {
   text-align: center;
 }
 
-/* History section */
 #history-section {
   margin-top: 2.5rem;
   text-align: left;
@@ -244,7 +229,6 @@ footer {
   padding: 0.15rem 0;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   main {
     padding: 1.5rem 1rem 2.5rem;
