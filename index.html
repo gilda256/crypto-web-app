@@ -13,26 +13,20 @@
   </header>
 
   <main>
-    <!-- Skeleton / Loading -->
+    <input id="searchInput" type="text" placeholder="Search coin..." />
+
     <div id="loading" class="loading">
-      <p>Loading data…</p>
+      <p id="loading-text">Loading data…</p>
     </div>
 
-    <!-- Cryptocurrency Cards -->
-    <div id="coinList" class="coin-container" style="display:none;">
-      <div class="coin-card" id="bitcoin">
-        <h2>Bitcoin</h2>
-        <p id="bitcoin-price">Loading...</p>
-        <p id="bitcoin-24h">Loading...</p>
-      </div>
-      <div class="coin-card" id="ethereum">
-        <h2>Ethereum</h2>
-        <p id="ethereum-price">Loading...</p>
-        <p id="ethereum-24h">Loading...</p>
-      </div>
-    </div>
-
+    <div id="coinList" class="coin-container" style="display:none;"></div>
     
+    <section id="history-section">
+      <h3 id="history-title">Selected coin – last 7 days</h3>
+       <canvas id="btc-chart" width="400" height="200"></canvas>
+      <ul id="btc-history-list"></ul>
+    </section>
+
     <div class="random-advice">
       <h3>Random Advice</h3>
       <p id="random-advice">Loading advice…</p>

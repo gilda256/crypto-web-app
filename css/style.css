@@ -1,85 +1,288 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #FFFFFF; 
-  color: #212121; 
-  margin: 0;
-  padding: 0;
-  text-align: center;
+:root {
+  --bg-main: #f5f7fa;
+  --bg-card: #ffffff;
+  --bg-header: #263238;
+  --accent: #ffc107;
+  --accent-soft: #fff8e1;
+  --text-main: #212121;
+  --text-muted: #757575;
+  --primary: #1e88e5;
 }
 
+/* Global reset-ish */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
 header {
-  background-color: #263238; 
-  color: #FFC107; 
+  background-color: var(--bg-header);
+  color: var(--accent);
   padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 h1 {
   margin: 0;
-  font-weight: bold;
-  font-size: 28px; 
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
 }
 
+/* Main layout */
 main {
-  padding: 2rem;
+  padding: 2rem 1.5rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
 }
 
+/* Loading / Skeleton */
 .loading {
   font-size: 16px;
-  color: #757575; 
+  color: var(--text-muted);
   margin: 2rem 0;
 }
 
+/* Simple loading animation (advanced CSS) */
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.loading #loading-text {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Search input */
+#searchInput {
+  padding: 0.6rem 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d0d0d0;
+  border-radius: 999px;
+  width: 260px;
+  max-width: 100%;
+  margin: 0 auto 2rem;
+  display: block;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+#searchInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30,136,229,0.15);
+  transform: translateY(-1px);
+}
+
+/* Coin cards container */
 .coin-container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
+/* Coin card */
 .coin-card {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width: 220px;
-  border-top: 4px solid #FFC107; 
+  background-color: var(--bg-card);
+  border-radius: 14px;
+  padding: 1rem 1.25rem 1.1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  width: 230px;
+  border-top: 4px solid var(--accent);
   text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Hover effect (card) */
+.coin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.16);
+  border-color: var(--primary);
+  background-color: #ffffff;
 }
 
 .coin-card h2 {
-  font-weight: bold;
-  font-size: 20px; 
+  font-weight: 700;
+  font-size: 18px;
   margin-top: 0;
-  color: #263238; 
+  margin-bottom: 0.5rem;
+  color: #263238;
 }
 
 .coin-card p {
-  font-weight: 400; 
-  font-size: 14px; 
-  margin: 0.5rem 0;
-  color: #212121; 
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0.35rem 0;
+  color: var(--text-main);
 }
 
+/* small label style for numbers */
+.coin-card p span.label {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Buttons common */
+.fav-btn,
+.chart-btn {
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Favorites button */
+.fav-btn {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+  color: #5d4037;
+  margin-right: 0.4rem;
+}
+
+.fav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.fav-btn.active {
+  background-color: var(--accent);
+  color: #263238;
+  font-weight: 600;
+}
+
+/* Chart button */
+.chart-btn {
+  border-color: var(--primary);
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.chart-btn:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(13,71,161,0.3);
+}
+
+/* Random advice */
 .random-advice {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   font-style: italic;
-  font-size: 16px;
-  color: #1E88E5; 
+  font-size: 15px;
+  color: var(--primary);
 }
 
+/* Footer */
 footer {
-  background-color: #263238; 
-  color: #FFC107; 
+  background-color: var(--bg-header);
+  color: var(--accent);
   padding: 1rem 0;
-  margin-top: 2rem;
+  text-align: center;
 }
 
-#searchInput {
-  padding: 0.5rem 1rem;
-  font-size: 14px; 
-  font-weight: 500; 
-  border: 1px solid #757575; 
-  border-radius: 6px;
-  width: 200px;
-  margin-bottom: 2rem;
+/* History section */
+#history-section {
+  margin-top: 2.5rem;
+  text-align: left;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--bg-card);
+  border-radius: 14px;
+  padding: 1rem 1.25rem 1.3rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+#history-title {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: #263238;
+}
+
+#btc-chart {
+  display: block;
+  margin: 0.5rem auto 0.8rem;
+  max-width: 100%;
+}
+
+#btc-history-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 13px;
+  margin: 0;
+  color: var(--text-main);
+}
+
+#btc-history-list li {
+  padding: 0.15rem 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .coin-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .coin-card {
+    width: 100%;
+  }
+
+  #history-section {
+    padding: 0.85rem 0.85rem 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .coin-card h2 {
+    font-size: 17px;
+  }
+
+  .coin-card p {
+    font-size: 12px;
+  }
+
+  #searchInput {
+    width: 100%;
+  }
+
+  #history-title {
+    font-size: 15px;
+  }
 }
